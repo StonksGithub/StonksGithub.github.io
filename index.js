@@ -9,7 +9,7 @@ window.onload = function () {
 }
 
 window.setInterval(function () {
-    dropAmt.innerHTML = "Players Dropped: " + droppedKids
+    dropAmt.innerHTML = "DropCoins: " + droppedKids
     obstText.innerHTML = "Totally safe! Obstacles added: " + legvels
     obstPriceText.innerHTML = "DropCoins needed: " + legPrice
     obstPrice = Math.pow(2, obstacleLevels + 1)
