@@ -1,0 +1,20 @@
+#title, button, p {
+    text-align: "center";
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#title, p {
+    color: lightgrey;
+}
+
+button {
+    width: 200px;
+    height: 100px;
+    border-radius: 15px;
+    background-color: #7f7f7f;
+    border-color: #000000;
+}
+
+body {
+    background-color: rgb(63, 63, 63)
+}
