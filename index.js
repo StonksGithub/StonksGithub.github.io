@@ -10,8 +10,8 @@ window.onload = function () {
 
 window.setInterval(function () {
     dropAmt.innerHTML = "DropCoins: " + dropCoins
-    obstText.innerHTML = "Totally safe! Obstacles added: " + legvels
-    obstPriceText.innerHTML = "DropCoins needed: " + legPrice
+    obstText.innerHTML = "Totally safe! Obstacles added: " + obstacleLevels
+    obstPriceText.innerHTML = "DropCoins needed: " + obstPrice
     obstPrice = Math.pow(2, obstacleLevels + 1)
 }, 100)
 
