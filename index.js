@@ -16,7 +16,7 @@ window.setInterval(function () {
 }, 100)
 
 function dropPlayer() {
-    droppedKids += droppedPerClick
+    dropCoins += dropCoinsPerClick
 }
 
 function aObstacle() {
