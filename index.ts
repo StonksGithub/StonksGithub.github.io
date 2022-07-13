@@ -1,14 +1,3 @@
-let dropCoins = getCookie("dropCoins") === "" ? 0 : +getCookie("dropCoins") // if cookie exists, read it, else 0
-let dropCoinsPerClick = 1
-let obstacleLevels = getCookie("obstacleLvl") === "" ? 0 : +getCookie("obstacleLvl") // if cookie exists, read it, else 0
-var obstPrice = Math.pow(2, obstacleLevels + 1) // exponential function 2^(x+1) or e^(ln2*(x+1)) for calc students
-
-var dropAmt = document.getElementById("dropAmt")
-var obstText = document.getElementById("obstacles")
-var obstPriceText = document.getElementById("obstaclePrice")
-
-const d = new Date();
-
 function getCookie(cname) { // THANK YOU W3SCHOOLS!
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -24,6 +13,23 @@ function getCookie(cname) { // THANK YOU W3SCHOOLS!
     }
     return "";
 }
+
+function roughScale(x: string, base: number = 10) {
+    const parsed = parseInt(x, base);
+    if (isNaN(parsed)) { return 0; }
+    return parsed * 100;
+}
+
+let dropCoins = getCookie("dropCoins") === "" ? 0 : roughScale(getCookie("dropCoins")) // if cookie exists, read it, else 0
+let dropCoinsPerClick = 1
+let obstacleLevels = getCookie("obstacleLvl") === "" ? 0 : roughScale(getCookie("obstacleLvl")) // if cookie exists, read it, else 0
+var obstPrice = Math.pow(2, obstacleLevels + 1) // exponential function 2^(x+1) or e^(ln2*(x+1)) for calc students
+
+var dropAmt = document.getElementById("dropAmt")
+var obstText = document.getElementById("obstacles")
+var obstPriceText = document.getElementById("obstaclePrice")
+
+const d = new Date();
 
 function checkIfNOU(variable:HTMLElement|null|undefined, prefix:String = "", suffix:String = "", value:number = 0) {
     if(variable) {
