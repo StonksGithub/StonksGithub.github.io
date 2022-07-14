@@ -1,3 +1,16 @@
+import Decimal from "./break_infinity.js";
+
+let dropCoins = getCookie("dropCoins") === "" ? new Decimal(0) : new Decimal(roughScale(getCookie("dropCoins"))) // if cookie exists, read it, else 0
+let dropCoinsPerClick = new Decimal(1)
+let obstacleLevels = getCookie("obstacleLvl") === "" ? new Decimal(0) : new Decimal(roughScale(getCookie("obstacleLvl"))) // if cookie exists, read it, else 0
+var obstPrice = Decimal.pow(2, (obstacleLevels + 1)) // exponential function 2^(x+1) or e^(ln2*(x+1)) for calc students
+
+var dropAmt = document.getElementById("dropAmt")
+var obstText = document.getElementById("obstacles")
+var obstPriceText = document.getElementById("obstaclePrice")
+
+const d = new Date();
+
 function getCookie(cname) { // THANK YOU W3SCHOOLS!
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -14,24 +27,13 @@ function getCookie(cname) { // THANK YOU W3SCHOOLS!
     return "";
 }
 
-function roughScale(x: string, base: number = 10) {
+function roughScale(x:string, base:number = 10) {
     const parsed = parseInt(x, base);
     if (isNaN(parsed)) { return 0; }
-    return parsed * 100;
+    return parsed;
 }
 
-let dropCoins = getCookie("dropCoins") === "" ? 0 : roughScale(getCookie("dropCoins")) // if cookie exists, read it, else 0
-let dropCoinsPerClick = 1
-let obstacleLevels = getCookie("obstacleLvl") === "" ? 0 : roughScale(getCookie("obstacleLvl")) // if cookie exists, read it, else 0
-var obstPrice = Math.pow(2, obstacleLevels + 1) // exponential function 2^(x+1) or e^(ln2*(x+1)) for calc students
-
-var dropAmt = document.getElementById("dropAmt")
-var obstText = document.getElementById("obstacles")
-var obstPriceText = document.getElementById("obstaclePrice")
-
-const d = new Date();
-
-function checkIfNOU(variable:HTMLElement|null|undefined, prefix:String = "", suffix:String = "", value:number = 0) {
+function checkIfNOU(variable:HTMLElement|null|undefined, prefix:String = "", suffix:String = "", value = Decimal(0)) {
     if(variable) {
         variable.innerHTML = `{prefix} {value} {suffix}`
     }
@@ -55,7 +57,7 @@ function dropPlayer() {
 function aObstacle() {
     if (dropCoins >= obstPrice) {
         dropCoins -= obstPrice
-        obstacleLevels++
-        obstPrice = Math.pow(2, obstacleLevels + 1)
+        Decimal.add(obstacleLevels, 1)
+        obstPrice = Decimal.pow(2, (obstacleLevels + 1))
     }
 }
