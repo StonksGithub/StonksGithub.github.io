@@ -28,6 +28,18 @@ function aObstacle() {
 btn.addEventListener("click", dropPlayer())
 obstBtn.addEventListener("click", aObstacle())
 
+window.setTimeout(function () {
+    checkIfNOU(dropAmt, "DropCoins:", "", dropCoins)
+    checkIfNOU(obstText, "Totally safe! Obstacles added:", "lvls", obstacleLevels)
+    checkIfNOU(obstPriceText, "DropCoins needed:", "$", obstPrice)
+
+    // Save Cookie
+    d.setTime(d.getTime() + 31556926000);
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = "dropCoins=" + dropCoins + "; obstacleLvl=" + obstacleLevels + ";" + expires + "; path=/";
+}, 100)
+
+
 function getCookie(cname) { // THANK YOU W3SCHOOLS!
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -50,19 +62,9 @@ function roughScale(x, base = 10) {
     return parsed;
 }
 
+
 function checkIfNOU(variable, prefix = "", suffix = "", value = Decimal(0)) {
     if(variable) {
-        variable.innerHTML = `{prefix} {value} {suffix}`
+        variable.innerHTML = `${prefix} ${value} ${suffix}`
     }
 }
-
-window.setTimeout(function () {
-    checkIfNOU(dropAmt, "DropCoins:", "", dropCoins)
-    checkIfNOU(obstText, "Totally safe! Obstacles added:", "lvls", obstacleLevels)
-    checkIfNOU(obstPriceText, "DropCoins needed:", "$", obstPrice)
-
-    // Save Cookie
-    d.setTime(d.getTime() + 31556926000);
-    let expires = "expires=" + d.toUTCString();
-    document.cookie = "dropCoins=" + dropCoins + "; obstacleLvl=" + obstacleLevels + ";" + expires + "; path=/";
-}, 100)
