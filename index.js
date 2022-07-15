@@ -64,5 +64,5 @@ window.setTimeout(function () {
     // Save Cookie
     d.setTime(d.getTime() + 31556926000);
     let expires = "expires=" + d.toUTCString();
-    document.cookie = "dropCoins=" + dropCoins + "; obstacleLvl=" + obstacleLevels + ";" + expires + "; path=/";
+    document.cookie = "dropCoins=" + dropCoins + ";obstacleLvl=" + obstacleLevels + ";" + expires + ";path=/";
 }, 100)
