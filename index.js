@@ -8,8 +8,25 @@ var obstPrice = Decimal.pow(2, (obstacleLevels + 1)) // exponential function 2^(
 var dropAmt = document.getElementById("dropAmt")
 var obstText = document.getElementById("obstacles")
 var obstPriceText = document.getElementById("obstaclePrice")
+var btn = document.getElementById("btn")
+var obstBtn = document.getElementById("aObstacle")
 
 const d = new Date();
+
+function dropPlayer() {
+    dropCoins += dropCoinsPerClick
+}
+
+function aObstacle() {
+    if (dropCoins >= obstPrice) {
+        dropCoins -= obstPrice
+        Decimal.add(obstacleLevels, 1)
+        obstPrice = Decimal.pow(2, (obstacleLevels + 1))
+    }
+}
+
+btn.addEventListener("click", dropPlayer())
+obstBtn.addEventListener("click", aObstacle())
 
 function getCookie(cname) { // THANK YOU W3SCHOOLS!
     let name = cname + "=";
@@ -49,15 +66,3 @@ window.setTimeout(function () {
     let expires = "expires=" + d.toUTCString();
     document.cookie = "dropCoins=" + dropCoins + "; obstacleLvl=" + obstacleLevels + ";" + expires + "; path=/";
 }, 100)
-
-function dropPlayer() {
-    dropCoins += dropCoinsPerClick
-}
-
-function aObstacle() {
-    if (dropCoins >= obstPrice) {
-        dropCoins -= obstPrice
-        Decimal.add(obstacleLevels, 1)
-        obstPrice = Decimal.pow(2, (obstacleLevels + 1))
-    }
-}
