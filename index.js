@@ -15,11 +15,11 @@ let dropCoinsPerClick = new Decimal(1)
 let obstacleLevels = getCookie("obstacleLvl") === "" ? new Decimal(0) : new Decimal(roughScale(getCookie("obstacleLvl"))) // if cookie exists, read it, else 0
 var obstPrice = Decimal.pow(2, (obstacleLevels + 1)) // exponential function 2^(x+1) or e^(ln2*(x+1)) for calc students
 
-var dropAmt = document.getElementById("dropAmt")
-var obstText = document.getElementById("obstacles")
-var obstPriceText = document.getElementById("obstaclePrice")
-var btn = document.getElementById("btn")
-var obstBtn = document.getElementById("aObstacle")
+var dropAmt = $("dropAmt")
+var obstText = $("obstacles")
+var obstPriceText = $("obstaclePrice")
+var btn = $("btn")
+var obstBtn = $("aObstacle")
 
 const d = new Date();
 
