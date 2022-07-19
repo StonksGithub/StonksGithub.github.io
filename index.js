@@ -1,4 +1,4 @@
-import { Decimal } from "./break_infinity.js"
+import Decimal from "./break_infinity.js"
 
 function getCookie(cname) { // THANK YOU W3SCHOOLS!
     let name = cname + "=";
