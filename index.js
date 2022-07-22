@@ -1,5 +1,3 @@
-import Decimal from "./break_infinity.js"
-
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -16,42 +14,48 @@ function getCookie(cname) {
     return "";
 }
 
-L1A, L2A, L3A, L4A, L5A, L6A, L7A, L8A, L9A, L10A, L11A, L12A, L13A, L14A, L15A, L16A = 0
+var luckAmounts = {
+    L1A: 0,
+    L2A: 0,
+    L3A: 0,
+    L4A: 0,
+    L5A: 0,
+    L6A: 0,
+    L7A: 0,
+    L8A: 0,
+    L9A: 0,
+    L10A: 0,
+    L11A: 0,
+    L12A: 0,
+    L13A: 0,
+    L14A: 0,
+    L15A: 0,
+    L16A: 0
+}
 
-L1 = $("L1")
-L2 = $("L2")
-L3 = $("L3")
-L4 = $("L4")
-L5 = $("L5")
-L6 = $("L6")
-L7 = $("L7")
-L8 = $("L8")
-L9 = $("L9")
-L10 = $("L10")
-L11 = $("L11")
-L12 = $("L12")
-L13 = $("L13")
-L14 = $("L14")
-L15 = $("L15")
-L16 = $("L16")
-
-function checkIfNOU(variable, prefix = "", suffix = "", value = Decimal(0)) {
+function checkIfNOU(variable, prefix = "", suffix = "", value = 0) {
     if (variable) {
         variable.innerHTML = `${prefix} ${value} ${suffix}`
     }
 }
 
-function fLEq(max = Decimal(16), prefixVar = "L", prefixStr = "Luck"){
+function fLEq(max = 16, prefixStr = "Luck "){
     for (i = 1; i <= max; i++) {
-        variable = $(`${prefixVar}${i}`)
-        checkIfNOU(variable,prefixStr+i+":","",window[`L${i}A`])
+        var variable = document.getElementById(`L${i}`)
+        checkIfNOU(variable,prefixStr+i+":","",luckAmounts[`L${i}A`])
     }
 }
 
-window.setTimeout(function () {
+function giveRandom() {
+    var i = 1
+    while (Math.round(Math.random()+1) == 2 && i <= 15){
+        i++
+    }
+    luckAmounts[`L${i}A`]++
+    return i
+}
+
+window.setInterval(function () {
+    giveRandom()
     fLEq()
-    // Save Cookie
-    // d.setTime(d.getTime() + 31556926000);
-    // let expires = "expires=" + d.toUTCString();
-    // document.cookie = "dropCoins=" + dropCoins + ";obstacleLvl=" + obstacleLevels + ";" + expires + ";path=/";
 }, 100)
